@@ -1,0 +1,505 @@
+/* Tạo độ cao, đổ màu của phần header */
+.header {
+  height: var(--header-height);
+  background-image: linear-gradient(0, #df2320, #b02708);
+}
+/* Tạo khoảng cách cách nhau thẻ li */
+.header__navbar {
+  display: flex;
+  justify-content: space-between;
+}
+/* bỏ đi dấu của li, căn padding bên trái */
+.header__navbar-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 4px 0 0 0;
+}
+/* Khoảng cách, vị trí cảu thẻ nav */
+.header__navbar-item {
+  margin: 0 8px;
+  position: relative;
+  min-height: 26px;
+}
+/* tạo animation di chuyển hiện ra block QR */
+.header__navbar-item--has-qr:hover .header__qr {
+  display: block;
+}
+/* tạo animation di chuyển hiện ra block info */
+.header__navbar-item--has-notify:hover .header__notify {
+  display: block;
+}
+/* căn chỉnh vị trí,chiều cao,độ rộng,màu sắc của item */
+.header__navbar-item,
+.header__navbar-item-link {
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--white-color);
+  text-decoration: none;
+}
+/* tạo box cũng hàng và căn giữa item */
+.header__navbar-item,
+.header__navbar-item-link .header__navbar-icon-link {
+  display: inline-flex;
+  align-items: center;
+}
+/* tạo con trỏ và màu cho item */
+.header__navbar-item:hover,
+.header__navbar-item-link:hover,
+.header__navbar-icon-link:hover {
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+/* Tạo độ dày cho đăng nhập/đăng kí */
+.header__navbar-item--bold {
+  font-weight: 400;
+}
+/* Tạo gạch ngăn cách */
+.header__navbar-item--separate:after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-left: 1px solid #fb9086;
+  height: 14px;
+  right: -9px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+/* đổi màu icon,bỏ gạch chân */
+.header__navbar-icon-link {
+  color: var(--white-color);
+  text-decoration: none;
+}
+/* căn chỉnh cho icon, tăng size cho icon */
+.header__navbar-icon {
+  font-size: 1.8rem;
+  margin: 0 4px;
+}
+/* không sử dụng con trỏ và hover */
+.header__navbar-title--no-poiter {
+  cursor: text;
+  color: var(--white-color);
+}
+/* Header QR code, tạo ảnh động, xoá QR khi không đụng đến */
+.header__qr {
+  background-color: var(--white-color);
+  width: 186px;
+  position: absolute;
+  left: 0;
+  top: 118%;
+  padding: 8px;
+  border-radius: 2px;
+  display: none;
+  animation: lowa ease-in 0.3s;
+}
+/* tạo cầu nối lớp giả để khi di chuột vào không bị mất */
+.header__qr::before {
+  top: -14px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  content: "";
+  display: block;
+}
+/* độ rộng của hình */
+.header__qr-img {
+  width: 100%;
+}
+/* căn hai item ảnh gg và as */
+.header__qr-apps {
+  display: flex;
+  justify-content: space-between;
+}
+/* chỉnh độ cao ảnh */
+.header__qr-download-img {
+  height: 16px;
+}
+/* chỉnh căn ảnh gg và as cho trùng đường kẻ QR */
+.header__qr-link:nth-child(1) {
+  margin-left: 10px;
+}
+.header__qr-link:nth-child(2) {
+  margin-right: 10px;
+}
+/* Header Notification */
+.header__notify {
+  position: absolute;
+  top: 118%;
+  right: 0;
+  border: 1px solid #d3d3d3;
+  width: 404px;
+  background-color: var(--white-color);
+  transform-origin: calc(100% - 20px) top;
+  animation: headerNotifyGrow ease-in 0.2s;
+  will-change: opacity, transform;
+  display: none;
+  z-index: 1;
+}
+.header__notify::before {
+  content: "";
+  border-width: 20px 27px;
+  border-style: solid;
+  border-color: transparent transparent var(--white-color) transparent;
+  position: absolute;
+  right: 4px;
+  top: -29px;
+}
+
+.header__notify::after {
+  content: "";
+  width: 100%;
+  height: 14px;
+  position: absolute;
+  top: -8px;
+  left: 0;
+  background-color: transparent;
+  display: block;
+}
+/* Tạo animation cho mục thông báo */
+@keyframes headerNotifyGrow {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* chỉnh chiều cao thông báo và màu,thêm chức năng trỏ chuột default */
+.header__notify-header {
+  height: 40px;
+  background-color: var(--white-color);
+  cursor: default;
+}
+/* thêm màu, chiều cao,độ rộng, của header và heading 3, thêm chức năng không thể coppy */
+.header__notify-header h3 {
+  color: #666;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin: 0 0 0 12px;
+  line-height: 40px;
+  user-select: none;
+}
+/* căn chỉnh cho list */
+.header__notify-list {
+  padding-left: 0;
+}
+/* tạo display cho item */
+.header__notify-item {
+  display: flex;
+}
+/* tạo 1 lớp màu trước */
+.header__notify-item:hover {
+  background-color: #d4cfce;
+}
+/* thêm lớp mùa khi di chuột vào */
+.header__notify-item--viewed {
+  background-color: rgba(247, 81, 47, 0.09);
+}
+/* tạo display cho thẻ link căn chỉnh đọ rộng  */
+.header__notify-link {
+  display: flex;
+  padding: 12px;
+  text-decoration: none;
+  width: 100%;
+}
+/* căn chỉnh độ rộng img, tránh bị giãn ảnh */
+.header__notify-img {
+  width: 48px;
+  object-fit: contain;
+}
+/* chỉnh thẻ mô tả sản phẩm */
+.header__notify-info {
+  margin-left: 12px;
+}
+/* chỉnh tên sản phẩm,tăng độ rộng,mau chữ,size chữ */
+.header__notify-name {
+  display: block;
+  font-size: 1.4rem;
+  color: var(--black-color);
+  font-weight: 400;
+  line-height: 2rem;
+}
+/* chỉnh size thông tin sản phẩm, chiều cao sản phẩm, màu */
+.header__notify-descrition {
+  display: block;
+  font-size: 1.2rem;
+  color: #756f6e;
+  margin-top: 4px;
+}
+/* tạo khối cho chân trang header */
+.header__notify-footer {
+  display: flex;
+  justify-content: center;
+}
+/* căn chỉnh cho nút */
+.header__notify-footer-btn {
+  text-decoration: none;
+  color: var(--black-color);
+  padding: 8px 0;
+  font-weight: 400;
+  font-size: 1.4rem;
+  width: 100%;
+  text-align: center;
+}
+/* auth Modal */
+/* tạo khung cho form */
+.auth-form {
+  width: 500px;
+  background-color: var(--white-color);
+  border-radius: 5px;
+  overflow: hidden;
+}
+/*đổ màu, tạo khung bên trong form căn chỉnh 2 bên */
+.auth-form__container {
+  padding: 0 32px;
+  background-color: var(--white-color);
+  border-radius: 5px;
+}
+/* căn chỉnh cho phần đầu form */
+.auth-form__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+  margin-top: 10px;
+}
+/* chỉnh chữ cho phần heading */
+.auth-form__heading {
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: var(--text-color);
+}
+/* đổi màu cho nút khi bấm vào di chuyển sang form login */
+.auth-form__switch-btn {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+.auth-form__form {
+}
+/* tạo khung cho input */
+.auth-form__input {
+  width: 100%;
+  height: 40px;
+  margin-top: 16px;
+  padding: 0 12px;
+  font-size: 1.4rem;
+  border-radius: 2px;
+  border: 1px solid var(--boder-color);
+  outline: none;
+}
+/* khi di chuột vào input đổi màu thể hiện tính người dùng */
+.auth-form__input:focus {
+  border-color: #888;
+}
+/* căn chỉnh phía ngoài phần phụ */
+.auth-form__aside {
+  margin-top: 18px;
+}
+/* căn chỉnh cho chữ cảu aside */
+.auth-form__policy-text {
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  text-align: center;
+  padding: 0 12px;
+}
+/* tạo màu cho chữ trong aside */
+.auth-form__text-link {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+/* button style */
+.auth-form__controls {
+  margin-top: 80px;
+  display: flex;
+  justify-content: flex-end;
+}
+/* tạo khoảng cách cho chữ trở lại */
+.auth-form__controls-back {
+  margin-right: 8px;
+}
+/* tạo cho socials */
+.auth-form__socials {
+  background-color: #f3f3f3;
+  height: 42px;
+  width: 100%;
+  padding: 26px 32px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  align-items: center;
+}
+.auth-form__socials-icon {
+  font-size: 1.8rem;
+}
+.auth-form__socials--facebook {
+  background-color: #3a5a98;
+}
+.auth-form__socials--facebook,
+.auth-form__socials--textfb {
+  color: var(--white-color);
+}
+.auth-form__socials-label {
+  margin: 0 32px;
+}
+/* cần trợ giúp */
+.auth-form__help {
+  display: flex;
+  justify-content: flex-end;
+}
+.auth-form__help-link {
+  text-decoration: none;
+  font-size: 1.4rem;
+}
+/* tạo vách ngăn */
+.auth-form__help-separate {
+  display: block;
+  height: 22px;
+  border-left: 1px solid var(--boder-color);
+  margin: 2px 16px 0;
+}
+/* header with search */
+.header-with-search {
+  height: var(--header-with-search-height);
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin: 0 8px;
+}
+
+.header__logo {
+  width: 200px;
+}
+.header__logo-img {
+  width: 150px;
+  color: var(--white-color);
+}
+/* Lưu ý không overflow:hidden vì khi có ô tìm kiếm là con của thanh
+search sẽ không hiện ra được */
+/* nên boder radius vào input */
+.header__search {
+  background-color: var(--white-color);
+  height: 40px;
+  flex: 1;
+  border-radius: 2px;
+  display: flex;
+
+  align-items: center;
+}
+/* căn chỉnh input */
+.header__search-input {
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  flex: 1;
+  height: 100%;
+  font-size: 1.4rem;
+  color: var(--text-color);
+  padding: 0 16px;
+}
+/* căn chỉnh khung select */
+.header__search-selection {
+  border-left: 1px solid #ccc;
+  padding-left: 16px;
+  position: relative;
+  cursor: pointer;
+}
+/* căn chỉnh cho label */
+.header__search-select-label {
+  color: var(--text-color);
+  margin-left: 16px;
+  font-size: 1.4rem;
+}
+/* chỉnh icon: màu size  */
+.header__search-icon {
+  font-size: 1.4rem;
+  color: #575757;
+  margin: 4px 16px 0 8px;
+  position: relative;
+  top: 2px;
+}
+/* logo giỏ hàng */
+.header__cart-logo {
+  width: 150px;
+  font-size: 2rem;
+  color: var(--white-color);
+}
+/* Nút tìm kiếm */
+.header__search-btn {
+  background-color: var(--primary-color);
+  border: none;
+  height: 34px;
+  border-radius: 3px;
+  margin-right: 3px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+/* tạo hiệu ứng hover vào nút tìm kiếm */
+.header__search-btn:hover {
+  background-color: #ec593c;
+}
+/* icon của nút tìm kiếm */
+.header__search-btn-icon {
+  font-size: 1.4rem;
+  color: var(--white-color);
+}
+/* khi hover vào khung seclect sẽ hiện ra khung option */
+.header__search-selection:hover .header__search-option {
+  display: block;
+}
+/* khung select option */
+.header__search-option {
+  position: absolute;
+  list-style: none;
+  right: 0;
+  top: 120%;
+  width: 140px;
+  box-shadow: 0 1px 1px #ccc;
+  padding-left: 0;
+  border-radius: 3px;
+  /* overflow: hidden; */
+  cursor: pointer;
+  display: none;
+}
+/* tạo lớp giả làm cầu nối cho option */
+.header__search-option::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 12px;
+  position: absolute;
+  top: -10px;
+}
+/* item của option */
+.header__search-option-item {
+  background-color: var(--white-color);
+  padding: 8px 8px;
+}
+/* hiệu ứng khi di chuyển chuột vào */
+.header__search-option-item:hover {
+  background-color: #fafafa;
+}
+/* căn chỉnh thẻ span */
+.header__search-option-item span {
+  font-size: 1.4rem;
+  color: var(--text-color);
+  margin-left: 8px;
+}
+/* chỉ riêng mục option chứa i */
+.header__search-option-item i {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  margin-left: 12px;
+  display: none;
+}
+/* khi active sẽ hiện icon */
+.header__search-option-item--active i {
+  display: inline-block;
+}
